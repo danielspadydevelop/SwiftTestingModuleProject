@@ -17,6 +17,10 @@ import Testing
     let result = divisionRemainder(of: dividend, dividedBy: divisor)
 
     // then
-    #expect(result.quotient == 3)
-    #expect(result.remainder == 1)
+    verifyDivision(result, expectedQuotient: 3, expectedRemainder: 1)
+}
+
+func verifyDivision(_ result: (quotient: Int, remainder: Int), expectedQuotient: Int, expectedRemainder: Int) {
+    #expect(result.quotient == expectedQuotient)
+    #expect(result.remainder == expectedRemainder)
 }
