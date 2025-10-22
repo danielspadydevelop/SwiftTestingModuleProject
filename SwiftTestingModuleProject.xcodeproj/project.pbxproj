@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		99918BF22EA9774A0079DD5B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 99918BF12EA9774A0079DD5B /* Numerics */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		99AAE3982EA85118000487C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -46,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99918BF22EA9774A0079DD5B /* Numerics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,7 @@
 			);
 			name = SwiftTestingModuleProjectTests;
 			packageProductDependencies = (
+				99918BF12EA9774A0079DD5B /* Numerics */,
 			);
 			productName = SwiftTestingModuleProjectTests;
 			productReference = 99AAE3972EA85118000487C2 /* SwiftTestingModuleProjectTests.xctest */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = 99AAE3812EA85117000487C2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				99918BF02EA9774A0079DD5B /* XCRemoteSwiftPackageReference "swift-numerics" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 99AAE38B2EA85117000487C2 /* Products */;
 			projectDirPath = "";
@@ -479,6 +488,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		99918BF02EA9774A0079DD5B /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-numerics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		99918BF12EA9774A0079DD5B /* Numerics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99918BF02EA9774A0079DD5B /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = Numerics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 99AAE3822EA85117000487C2 /* Project object */;
 }
