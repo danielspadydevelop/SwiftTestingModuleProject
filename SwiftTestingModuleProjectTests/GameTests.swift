@@ -35,3 +35,21 @@ import Testing
         try game.play()
     }
 }
+
+@Test func patchMatchThrows() throws {
+    let game = Game(name: "Patch Match")
+    try game.play()
+}
+
+extension GameError: @retroactive CustomTestStringConvertible {
+    public var testDescription: String {
+        switch self {
+        case .notPurchased:
+            "This game has not been purchased."
+        case .notInstalled:
+            "This game is not currently installed."
+        case .parentalControlsDisallowed:
+            "This game has been blocked by parental controls."
+        }
+    }
+}
