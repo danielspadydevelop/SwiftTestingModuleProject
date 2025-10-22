@@ -8,24 +8,32 @@
 @testable import SwiftTestingModuleProject
 import Testing
 
-@Test func outstandingTasksStringIsPlural() {
+@Test func outstandingTasksStringIsPlural() throws {
     // given
-    var sut = User(name: "Drake")
-
-    for album in 1...3 {
-        var project = Project(name: "Album #\(album)")
-
-        for song in 1...10 {
-            let item = ToDoItem(name: "Write song #\(song)")
-            project.addToDoItem(item)
-        }
-
-        sut.addProject(project)
-    }
+    let sut = try createTestUser(projects: 3, itemsPerProject: 10)
 
     // when
     let rowTitle = sut.outstandingTasksString
 
     // then
     #expect(rowTitle == "30 items")
+}
+
+func createTestUser(projects: Int, itemsPerProject: Int) throws -> User {
+    var user = User(name: "Drake")
+    try #require(user.projects.isEmpty)
+
+    for album in 1...projects {
+        var project = Project(name: "Album #\(album)")
+        try #require(project.items.isEmpty)
+
+        for song in 1...itemsPerProject {
+            let item = ToDoItem(name: "Write song #\(song)")
+            project.addToDoItem(item)
+        }
+
+        user.addProject(project)
+    }
+
+    return user
 }
