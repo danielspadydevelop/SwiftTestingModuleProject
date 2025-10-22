@@ -8,14 +8,26 @@
 import Testing
 @testable import SwiftTestingModuleProject
 
-@Test func fahrenheitToCelsius() throws {
+@Test func check32FahrenheitIsZeroCelsius() {
+    // given
     let sut = Converter()
+    let input = 32.0
 
-    let input1 = 32.0
-    let output1 = sut.convertToCelsius(fahrenheit: input1)
-    #expect(output1 == 0)
+    // when
+    let celsius = sut.convertToCelsius(fahrenheit: input)
 
-    let input2 = 212.0
-    let output2 = sut.convertToCelsius(fahrenheit: input2)
-    #expect(output2 == 100)
+    // then
+    #expect(celsius == 0)
+}
+
+@Test func check212FahrenheitIs100Celsius() {
+    // given
+    let sut = Converter()
+    let input = 212.0
+
+    // when
+    let celsius = sut.convertToCelsius(fahrenheit: input)
+
+    // then
+    #expect(celsius == 100)
 }
