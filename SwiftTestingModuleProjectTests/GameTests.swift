@@ -20,3 +20,18 @@ import Testing
         Issue.record()
     }
 }
+
+@Test func playingBlastazapThrows() {
+    let game = Game(name: GameTitle.blast.rawValue)
+
+    #expect(throws: GameError.notInstalled) {
+        try game.play()
+    }
+}
+
+@Test func playingOddOneOutDoesntThrow() {
+    let game = Game(name: "Odd One Out")
+    #expect(throws: Never.self) {
+        try game.play()
+    }
+}
