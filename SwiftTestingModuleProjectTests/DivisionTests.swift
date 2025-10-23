@@ -8,7 +8,8 @@
 @testable import SwiftTestingModuleProject
 import Testing
 
-@Test func divisionRemainder() {
+@Test(.tags(.division))
+func divisionRemainder() {
     // given
     let dividend = 10
     let divisor = 3
@@ -20,7 +21,8 @@ import Testing
     verifyDivision(result, expectedQuotient: 3, expectedRemainder: 1)
 }
 
-@Test func divisors() {
+@Test(.tags(.division))
+func divisors() {
     // given
     let dividend = 10
     let divisor = 3

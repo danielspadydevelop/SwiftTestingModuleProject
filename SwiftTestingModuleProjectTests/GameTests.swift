@@ -8,7 +8,8 @@
 @testable import SwiftTestingModuleProject
 import Testing
 
-@Test func playingBioBlitzThrows() {
+@Test(.tags(.game))
+func playingBioBlitzThrows() {
     let game = Game(name: GameTitle.bio.rawValue)
 
     do {
@@ -21,7 +22,8 @@ import Testing
     }
 }
 
-@Test func playingBlastazapThrows() {
+@Test(.tags(.game))
+func playingBlastazapThrows() {
     let game = Game(name: GameTitle.blast.rawValue)
 
     #expect(throws: GameError.notInstalled) {
@@ -29,14 +31,16 @@ import Testing
     }
 }
 
-@Test func playingOddOneOutDoesntThrow() {
+@Test(.tags(.game))
+func playingOddOneOutDoesntThrow() {
     let game = Game(name: "Odd One Out")
     #expect(throws: Never.self) {
         try game.play()
     }
 }
 
-@Test func patchMatchThrows() throws {
+@Test(.tags(.game))
+func patchMatchThrows() throws {
     let game = Game(name: "Patch Match")
     withKnownIssue("Game will always throw error in this test") {
         try game.play()

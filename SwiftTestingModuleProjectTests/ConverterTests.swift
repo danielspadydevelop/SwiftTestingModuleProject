@@ -10,7 +10,15 @@ import Numerics
 
 @testable import SwiftTestingModuleProject
 
-@Test func check32FahrenheitIsZeroCelsius() {
+extension Tag {
+    @Tag static var game: Self
+    @Tag static var dataHandling: Self
+    @Tag static var measurement: Self
+    @Tag static var division: Self
+}
+
+@Test(.tags(.dataHandling))
+func check32FahrenheitIsZeroCelsius() {
     // given
     let sut = Converter()
     let input = 32.0
@@ -22,7 +30,8 @@ import Numerics
     #expect(celsius.isApproximatelyEqual(to: 0, absoluteTolerance: 0.000001))
 }
 
-@Test func check212FahrenheitIs100Celsius() {
+@Test(.tags(.dataHandling))
+func check212FahrenheitIs100Celsius() {
     // given
     let sut = Converter()
     let input = 212.0
@@ -34,7 +43,8 @@ import Numerics
     #expect(celsius.isApproximatelyEqual(to: 100, absoluteTolerance: 0.000001))
 }
 
-@Test func check100FahrenheitIs37Celsius() {
+@Test(.tags(.dataHandling))
+func check100FahrenheitIs37Celsius() {
     // given
     let sut = Converter()
     let input = 100.0
@@ -46,7 +56,7 @@ import Numerics
     #expect(celsius.isApproximatelyEqual(to: 37.777777, absoluteTolerance: 0.000001))
 }
 
-@Test("Ensure Fahrenheit to Celsius conversion is correct.", arguments: [
+@Test("Ensure Fahrenheit to Celsius conversion is correct.", .tags(.measurement), arguments: [
     (32, 0),
     (212, 100),
     (-40, -40),
@@ -62,7 +72,7 @@ func fahrenheitToCelsiusNamed(values: (input: Double, output: Double)) {
     #expect(celsius.isApproximatelyEqual(to: values.output, absoluteTolerance: 0.000001))
 }
 
-@Test(arguments: [
+@Test(.tags(.measurement), arguments: [
     (32, 0),
     (212, 100),
     (-40, -40)
