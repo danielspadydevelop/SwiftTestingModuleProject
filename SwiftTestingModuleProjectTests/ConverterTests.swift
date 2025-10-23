@@ -45,3 +45,45 @@ import Numerics
     // then
     #expect(celsius.isApproximatelyEqual(to: 37.777777, absoluteTolerance: 0.000001))
 }
+
+@Test("Ensure Fahrenheit to Celsius conversion is correct.", arguments: [
+    (32, 0),
+    (212, 100),
+    (-40, -40),
+])
+func fahrenheitToCelsiusNamed(values: (input: Double, output: Double)) {
+    // given
+    let sut = Converter()
+
+    // when
+    let celsius = sut.convertToCelsius(fahrenheit: values.input)
+
+    // then
+    #expect(celsius.isApproximatelyEqual(to: values.output, absoluteTolerance: 0.000001))
+}
+
+@Test(arguments: [
+    (32, 0),
+    (212, 100),
+    (-40, -40)
+])
+func fahrenheitToCelsius(values: (input: Double, output: Double)) {
+    // given
+    let sut = Converter()
+
+    // when
+    let celsius = sut.convertToCelsius(fahrenheit: values.input)
+
+    // then
+    #expect(celsius.isApproximatelyEqual(to: values.output, absoluteTolerance: 0.000001))
+}
+
+@Test(arguments: [1, 2, 3], ["red", "green", "blue"])
+func combinatorics(first: Int, second: String) {
+    print("\(first), \(second)")
+}
+
+@Test(.serialized, arguments: [0, 1, 2], ["red", "green", "blue"])
+func combinatoricsOrder(first: Int, second: String) {
+    print("\(first), \(second)")
+}

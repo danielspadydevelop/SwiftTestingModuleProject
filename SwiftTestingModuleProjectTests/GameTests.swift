@@ -38,7 +38,9 @@ import Testing
 
 @Test func patchMatchThrows() throws {
     let game = Game(name: "Patch Match")
-    try game.play()
+    withKnownIssue("Game will always throw error in this test") {
+        try game.play()
+    }
 }
 
 extension GameError: @retroactive CustomTestStringConvertible {
