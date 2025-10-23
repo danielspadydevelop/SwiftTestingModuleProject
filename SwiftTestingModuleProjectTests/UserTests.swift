@@ -8,17 +8,6 @@
 @testable import SwiftTestingModuleProject
 import Testing
 
-@Test func outstandingTasksStringIsPlural() throws {
-    // given
-    let sut = try createTestUser(projects: 3, itemsPerProject: 10)
-
-    // when
-    let rowTitle = sut.outstandingTasksString
-
-    // then
-    #expect(rowTitle == "30 items")
-}
-
 func createTestUser(projects: Int, itemsPerProject: Int) throws -> User {
     var user = User(name: "Drake")
     try #require(user.projects.isEmpty)
@@ -36,4 +25,34 @@ func createTestUser(projects: Int, itemsPerProject: Int) throws -> User {
     }
 
     return user
+}
+
+struct TestViewModel {
+    var names: [String] = []
+    func loadNames() async throws {
+        
+    }
+}
+
+@Suite("User account tests", .timeLimit(.minutes(1)))
+struct UserTests {
+    @Test func outstandingTasksStringIsPlural() throws {
+        // given
+        let sut = try createTestUser(projects: 3, itemsPerProject: 10)
+
+        // when
+        let rowTitle = sut.outstandingTasksString
+
+        // then
+        #expect(rowTitle == "30 items")
+    }
+    
+    @Test func loadNames() async {
+        let viewModel = TestViewModel()
+
+        await withKnownIssue("Names can sometimes come back with too few values", isIntermittent: true) {
+            try await viewModel.loadNames()
+            #expect(viewModel.names.isEmpty == false, "Names should be full of values.")
+        }
+    }
 }

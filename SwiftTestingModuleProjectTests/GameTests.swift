@@ -55,19 +55,3 @@ extension GameError: @retroactive CustomTestStringConvertible {
         }
     }
 }
-
-@Test func loadNames() async {
-    let viewModel = TestViewModel()
-
-    await withKnownIssue("Names can sometimes come back with too few values", isIntermittent: true) {
-        try await viewModel.loadNames()
-        #expect(viewModel.names.isEmpty == false, "Names should be full of values.")
-    }
-}
-
-struct TestViewModel {
-    var names: [String] = []
-    func loadNames() async throws {
-        
-    }
-}
