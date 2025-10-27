@@ -7,12 +7,20 @@
 
 import Observation
 
+enum MyNameViewModelError: Error {
+    case emptyNamesError
+}
+
 @Observable
 class NameViewModel {
     var names = [String]()
 
-    func loadNames() async {
+    func loadNames() async throws {
         // do some async work here
         names = ["BaiChao", "LuMeng"]
+        
+        if names.isEmpty {
+            throw MyNameViewModelError.emptyNamesError
+        }
     }
 }
