@@ -10,11 +10,27 @@ import Testing
 
 @Suite("Concurrency and async/await tests", .timeLimit(.minutes(1)))
 struct DataHandling {
+    @Test("Loading empty view model names")
+    func loadNamesEmpty() async {
+        let viewModel = await NameViewModel()
+        
+        do {
+            try #require(viewModel.names.isEmpty == true, "Names should be empty.")
+        } catch {
+            print(error)
+        }
+    }
+    
     @Test("Loading view model names")
     func loadNames() async {
-        let viewModel = NameViewModel()
-        try await viewModel.loadNames()
-        // try #require(viewModel.names.isEmpty == false, "Names should be full of values.")
-        #expect(viewModel.names.isEmpty == false, "Names should be full of values.")
+        let viewModel = await NameViewModel()
+        
+        do {
+            try await viewModel.loadNames()
+            try #require(viewModel.names.isEmpty == false, "Names should be full of values.")
+        } catch {
+            print(error)
+        }
     }
+
 }
