@@ -12,7 +12,7 @@ import Testing
 struct DataHandling {
     @Test("Loading empty view model names")
     func loadNamesEmpty() async {
-        let viewModel = await NameViewModel()
+        let viewModel = NameViewModel()
         
         do {
             try #require(viewModel.names.isEmpty == true, "Names should be empty.")
@@ -23,7 +23,7 @@ struct DataHandling {
     
     @Test("Loading view model names")
     func loadNames() async {
-        let viewModel = await NameViewModel()
+        let viewModel = NameViewModel()
         
         do {
             try await viewModel.loadNames()
