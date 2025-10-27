@@ -12,6 +12,7 @@ enum MyNameViewModelError: Error {
 }
 
 @Observable
+nonisolated
 class NameViewModel {
     var names = [String]()
 
