@@ -15,6 +15,7 @@ extension Tag {
     @Tag static var dataHandling: Self
     @Tag static var measurement: Self
     @Tag static var division: Self
+    @Tag static var mainActorTests: Self
 }
 
 @Test(.tags(.dataHandling))
