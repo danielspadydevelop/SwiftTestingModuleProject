@@ -47,12 +47,13 @@ struct UserTests {
         #expect(rowTitle == "30 items")
     }
     
-    @Test func loadNames() async {
+    @Test(.tags(.mainActorTests))
+    func loadNames() async {
         let viewModel = TestViewModel()
 
-        await withKnownIssue("Names can sometimes come back with too few values", isIntermittent: true) {
+        await withKnownIssue("Names can sometimes come back with too few values", isIntermittent: true) { @MainActor in
             try await viewModel.loadNames()
-            #expect(viewModel.names.isEmpty == false, "Names should be full of values.")
+            #expect(viewModel.names.isEmpty == true, "Names should be full of values.")
         }
     }
 }

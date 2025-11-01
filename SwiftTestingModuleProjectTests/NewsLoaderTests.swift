@@ -10,8 +10,9 @@
 import Testing
 
 @Suite("Confirmation Range Tests with NewsLoader", .timeLimit(.minutes(1)))
+@MainActor
 struct ConfirmationRangeNewsLoaderTests {
-    @Test("At Least 5 to 10 feeds should be returned")
+    @Test("At Least 5 to 10 feeds should be returned", .tags(.mainActorTests))
     func fiveToTenFeedsAreLoaded() async throws {
         let loader = NewsLoader()
 
