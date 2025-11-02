@@ -61,3 +61,14 @@ struct PlayerTests {
         #expect(result.contains("Cloud Strife"))
     }
 }
+
+@Suite("Player Score tests", .timeLimit(.minutes(1)))
+struct PlayerScoreTests {
+    @Test("Scores should always be in the range 0...100", .serialized, arguments: [0, 50, 100, 75, 1])
+    func addingPoints(score: Int) {
+        var player = Player(name: "Test Player")
+        player.add(score)
+        #expect(player.score >= 0 && player.score <= 100)
+    }
+}
+

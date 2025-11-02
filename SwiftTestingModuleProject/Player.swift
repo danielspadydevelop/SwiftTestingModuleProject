@@ -8,8 +8,13 @@
 struct Player {
     var name: String
     var friends = [Player]()
+    var score: Int = 0
 
     @TaskLocal static var current = Player(name: "Anonymous")
+    
+    mutating func add(_ points: Int) {
+        score += points
+    }
 }
 
 func createWelcomeScreen() -> String {
