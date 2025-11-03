@@ -10,14 +10,6 @@ import Numerics
 
 @testable import SwiftTestingModuleProject
 
-extension Tag {
-    @Tag static var game: Self
-    @Tag static var dataHandling: Self
-    @Tag static var measurement: Self
-    @Tag static var division: Self
-    @Tag static var mainActorTests: Self
-}
-
 @Test(.tags(.dataHandling))
 func check32FahrenheitIsZeroCelsius() {
     // given
