@@ -10,9 +10,17 @@
 import XCTest
 
 class PerformanceTest: XCTestCase {
+    
     func testPrimePerformance() {
         measure {
             _ = PrimeCalculator.calculate(upTo: 1_000_000)
         }
     }
+    
+    func testPrimePerformanceGuard() {
+        measure {
+            _ = PrimeCalculator.calculate(upTo: -1)
+        }
+    }
+
 }

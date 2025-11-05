@@ -47,6 +47,17 @@ struct UserTests {
         #expect(rowTitle == "30 items")
     }
     
+    @Test func outstandingTasksStringIsSingular() throws {
+        // given
+        let sut = try createTestUser(projects: 1, itemsPerProject: 1)
+
+        // when
+        let rowTitle = sut.outstandingTasksString
+
+        // then
+        #expect(rowTitle == "1 item")
+    }
+    
     @Test(.tags(.mainActorTests))
     func loadNames() async {
         let viewModel = TestViewModel()
