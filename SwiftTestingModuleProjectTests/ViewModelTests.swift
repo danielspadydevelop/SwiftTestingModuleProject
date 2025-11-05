@@ -13,8 +13,10 @@ struct DataHandling {
     @Test("Loading empty view model names")
     func loadNamesEmpty() async {
         let viewModel = NameViewModel()
-        
+        viewModel.names = []
+
         do {
+            try await viewModel.loadNames()
             try #require(viewModel.names.isEmpty == true, "Names should be empty.")
         } catch {
             print(error)
@@ -24,7 +26,8 @@ struct DataHandling {
     @Test("Loading view model names")
     func loadNames() async {
         let viewModel = NameViewModel()
-        
+        viewModel.names = ["BaiChao", "LuMeng"]
+
         do {
             try await viewModel.loadNames()
             try #require(viewModel.names.isEmpty == false, "Names should be full of values.")

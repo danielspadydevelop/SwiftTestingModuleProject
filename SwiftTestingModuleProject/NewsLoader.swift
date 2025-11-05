@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum NewsLoaderError: Error {
+    case emptyData
+}
+
 nonisolated
 struct NewsLoader: AsyncSequence, AsyncIteratorProtocol {
     var current = 1
@@ -17,7 +21,11 @@ struct NewsLoader: AsyncSequence, AsyncIteratorProtocol {
         do {
             let url = URL(string: "https://hws.dev/news-\(current).json")!
             let (data, _) = try await URLSession.shared.data(from: url)
-            return data.isEmpty ? nil : data
+            if data.isEmpty {
+                throw NewsLoaderError.emptyData
+            } else {
+                return data
+            }
         } catch {
             return nil
         }

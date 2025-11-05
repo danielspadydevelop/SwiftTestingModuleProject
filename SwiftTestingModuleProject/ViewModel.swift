@@ -16,10 +16,7 @@ nonisolated
 class NameViewModel {
     var names = [String]()
 
-    func loadNames() async throws {
-        // do some async work here
-        names = ["BaiChao", "LuMeng"]
-        
+    func loadNames() async throws {        
         if names.isEmpty {
             throw MyNameViewModelError.emptyNamesError
         }
